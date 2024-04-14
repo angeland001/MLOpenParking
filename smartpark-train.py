@@ -11,13 +11,62 @@ import torchvision.datasets as datasets
 import torchvision.models as models
 import matplotlib.pyplot as plt
 import numpy as np
-from torchsummary import summary
+#from torchsummary import summary
 import time
 from PIL import Image
 import shutil
 import os
 
+import random
 
+
+def split_data(source_folder, destination_folder, split_ratio=(0.7, 0.15, 0.15)):
+    """
+    Split data into training, testing, and validation sets.
+
+    Parameters:
+        source_folder (str): Path to the source folder containing the data.
+        destination_folder (str): Path to the destination folder where split data will be saved.
+        split_ratio (tuple): A tuple containing the ratios for training, testing, and validation sets.
+    """
+    assert sum(split_ratio) == 1.0, "Split ratio must sum up to 1.0"
+
+    # Create destination folders if they don't exist
+    for folder in ['training', 'testing', 'validation']:
+        os.makedirs(os.path.join(destination_folder, folder, 'busy'), exist_ok=True)
+        os.makedirs(os.path.join(destination_folder, folder, 'free'), exist_ok=True)
+
+    # Iterate over each camera folder
+    for camera_folder in os.listdir(source_folder):
+        camera_path = os.path.join(source_folder, camera_folder)
+        if os.path.isdir(camera_path):
+            for state_folder in ['busy', 'free']:
+                images = os.listdir(os.path.join(camera_path, state_folder))
+                random.shuffle(images)
+                total_images = len(images)
+                train_size = int(total_images * split_ratio[0])
+                test_size = int(total_images * split_ratio[1])
+                valid_size = total_images - train_size - test_size
+
+                for i, image in enumerate(images):
+                    if i < train_size:
+                        dest_folder = 'training'
+                    elif i < train_size + test_size:
+                        dest_folder = 'testing'
+                    else:
+                        dest_folder = 'validation'
+
+                    shutil.copy(os.path.join(camera_path, state_folder, image),
+                                os.path.join(destination_folder, dest_folder, state_folder, image))
+
+# Example usage
+source_folder = r'C:\Users\angel\Downloads\CNRPark-Patches-150x150'
+destination_folder = 'train\dataset\carpark'
+split_data(source_folder, destination_folder)
+
+
+#r'C:\Users\angel\Downloads\CNRPark-Patches-150x150'
+#destination_folder = 'train\dataset\carpark'
 # ***** Function definitions *****
 
 def image_convert(img):
@@ -130,9 +179,9 @@ def test_accuracy(model, loss_criterion):
 # Initialise training and test set directories
 root_dir = './train' # insert root dir here
 result_dir = root_dir + '/results/'
-training_set = root_dir + '/dataset/carpark/training_set'
-valid_set = root_dir + '/dataset/carpark/valid_set'
-test_set = root_dir + '/dataset/carpark/test_set'
+training_set = root_dir + '/dataset/carpark/training'
+valid_set = root_dir + '/dataset/carpark/validation'
+test_set = root_dir + 'dataset/carpark/testing'
 
 # Define transformations for the train, validation and test sets
 transform_train = transforms.Compose([

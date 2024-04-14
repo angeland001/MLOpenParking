@@ -12,7 +12,7 @@ from PIL import Image
 import time
 from timeit import default_timer as timer
 from threading import Thread
-import pyrebase
+#import pyrebase
 import json
 
 
@@ -174,14 +174,14 @@ def update_output(lot_status):
 # ***** Declarations ******
 
 # Initialise pyrebase wrapper for accessing Firebase REST API
-config = {
-    "apiKey": " ",
-    "authDomain": " ",
-    "databaseURL": " ",
-    "storageBucket": " "
-}
-firebase = pyrebase.initialize_app(config)
-db = firebase.database() # create pyrebase database object
+#config = {
+    #"apiKey": " ",
+   # "authDomain": " ",
+  #  "databaseURL": " ",
+ #   "storageBucket": " "
+#}
+#firebase = pyrebase.initialize_app(config)
+#db = firebase.database() # create pyrebase database object
 
 # Declare a dictionary to store output
 output = {
