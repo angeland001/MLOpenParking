@@ -171,17 +171,7 @@ def update_output(lot_status):
     # print(result)
 
 
-# ***** Declarations ******
 
-# Initialise pyrebase wrapper for accessing Firebase REST API
-#config = {
-    #"apiKey": " ",
-   # "authDomain": " ",
-  #  "databaseURL": " ",
- #   "storageBucket": " "
-#}
-#firebase = pyrebase.initialize_app(config)
-#db = firebase.database() # create pyrebase database object
 
 # Declare a dictionary to store output
 output = {
@@ -192,7 +182,7 @@ output = {
 }
 
 # Set path of trained model, test video, lot coordinates
-model_path = './test-data/model.pt'
+model_path = 'test-data\carpark_1.pt'
 video_path = './test-data/lot.mp4'
 lot_path = './test-data/lot_coords.csv'
 
@@ -266,3 +256,40 @@ while(video_flag): # continue till video runs
                 update_output(lot_status) # update to firebase
 
 cv2.destroyAllWindows()
+
+import json
+
+# Initialize a dictionary to store car lot data
+car_lot_data = {}
+
+# Iterate through each lot
+for lot_id in range(n_lots):
+    # Extract lot coordinates
+    top_left_x, top_left_y = int(loca[lot_id][0]), int(loca[lot_id][1])
+    bottom_right_x, bottom_right_y = int(locb[lot_id][0]), int(locb[lot_id][1])
+    
+    lot_coordinates = {
+        "top_left": {"x": top_left_x, "y": top_left_y},
+        "bottom_right": {"x": bottom_right_x, "y": bottom_right_y}
+    }
+    
+    # Determine lot status
+    status = ""
+    if lot_status[lot_id][0] == -1:
+        status = "unchecked"
+    elif lot_status[lot_id][0] == 0:
+        status = "occupied"
+    elif lot_status[lot_id][0] == 1:
+        status = "vacant"
+    
+    # Add lot data to dictionary
+    car_lot_data[f"lot_{lot_id}"] = {
+        "coordinates": lot_coordinates,
+        "status": status
+    }
+
+# Save JSON data to a file
+with open("car_lot_data.json", "w") as json_file:
+    json.dump(car_lot_data, json_file, indent=4)
+
+print("JSON data saved to 'car_lot_data.json'")
