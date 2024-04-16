@@ -259,8 +259,8 @@ cv2.destroyAllWindows()
 
 import json
 
-# Initialize a dictionary to store car lot data
-car_lot_data = {}
+# Initialize a list to store car lot data
+car_lot_data = []
 
 # Iterate through each lot
 for lot_id in range(n_lots):
@@ -282,14 +282,21 @@ for lot_id in range(n_lots):
     elif lot_status[lot_id][0] == 1:
         status = "vacant"
     
-    # Add lot data to dictionary
-    car_lot_data[f"lot_{lot_id}"] = {
+    # Create lot dictionary
+    lot_dict = {
+        "id": f"lot_{lot_id}",
         "coordinates": lot_coordinates,
         "status": status
     }
+    
+    # Add lot dictionary to list
+    car_lot_data.append(lot_dict)
+
+# Create JSON object
+json_data = {"lots": car_lot_data}
 
 # Save JSON data to a file
 with open("car_lot_data.json", "w") as json_file:
-    json.dump(car_lot_data, json_file, indent=4)
+    json.dump(json_data, json_file, indent=4)
 
 print("JSON data saved to 'car_lot_data.json'")

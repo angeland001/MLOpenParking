@@ -1,249 +1,270 @@
 {
-    "lot_0": {
-        "coordinates": {
-            "top_left": {
-                "x": 15,
-                "y": 230
+    "lots": [
+        {
+            "id": "lot_0",
+            "coordinates": {
+                "top_left": {
+                    "x": 15,
+                    "y": 230
+                },
+                "bottom_right": {
+                    "x": 79,
+                    "y": 300
+                }
             },
-            "bottom_right": {
-                "x": 79,
-                "y": 300
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_1": {
-        "coordinates": {
-            "top_left": {
-                "x": 81,
-                "y": 240
+        {
+            "id": "lot_1",
+            "coordinates": {
+                "top_left": {
+                    "x": 81,
+                    "y": 240
+                },
+                "bottom_right": {
+                    "x": 154,
+                    "y": 301
+                }
             },
-            "bottom_right": {
-                "x": 154,
-                "y": 301
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_2": {
-        "coordinates": {
-            "top_left": {
-                "x": 154,
-                "y": 240
+        {
+            "id": "lot_2",
+            "coordinates": {
+                "top_left": {
+                    "x": 154,
+                    "y": 240
+                },
+                "bottom_right": {
+                    "x": 224,
+                    "y": 295
+                }
             },
-            "bottom_right": {
-                "x": 224,
-                "y": 295
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_3": {
-        "coordinates": {
-            "top_left": {
-                "x": 224,
-                "y": 240
+        {
+            "id": "lot_3",
+            "coordinates": {
+                "top_left": {
+                    "x": 224,
+                    "y": 240
+                },
+                "bottom_right": {
+                    "x": 293,
+                    "y": 300
+                }
             },
-            "bottom_right": {
-                "x": 293,
-                "y": 300
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_4": {
-        "coordinates": {
-            "top_left": {
-                "x": 295,
-                "y": 245
+        {
+            "id": "lot_4",
+            "coordinates": {
+                "top_left": {
+                    "x": 295,
+                    "y": 245
+                },
+                "bottom_right": {
+                    "x": 368,
+                    "y": 303
+                }
             },
-            "bottom_right": {
-                "x": 368,
-                "y": 303
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_5": {
-        "coordinates": {
-            "top_left": {
-                "x": 375,
-                "y": 250
+        {
+            "id": "lot_5",
+            "coordinates": {
+                "top_left": {
+                    "x": 375,
+                    "y": 250
+                },
+                "bottom_right": {
+                    "x": 446,
+                    "y": 304
+                }
             },
-            "bottom_right": {
-                "x": 446,
-                "y": 304
-            }
+            "status": "vacant"
         },
-        "status": "vacant"
-    },
-    "lot_6": {
-        "coordinates": {
-            "top_left": {
-                "x": 453,
-                "y": 246
+        {
+            "id": "lot_6",
+            "coordinates": {
+                "top_left": {
+                    "x": 453,
+                    "y": 246
+                },
+                "bottom_right": {
+                    "x": 525,
+                    "y": 304
+                }
             },
-            "bottom_right": {
-                "x": 525,
-                "y": 304
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_7": {
-        "coordinates": {
-            "top_left": {
-                "x": 525,
-                "y": 248
+        {
+            "id": "lot_7",
+            "coordinates": {
+                "top_left": {
+                    "x": 525,
+                    "y": 248
+                },
+                "bottom_right": {
+                    "x": 605,
+                    "y": 306
+                }
             },
-            "bottom_right": {
-                "x": 605,
-                "y": 306
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_8": {
-        "coordinates": {
-            "top_left": {
-                "x": 607,
-                "y": 250
+        {
+            "id": "lot_8",
+            "coordinates": {
+                "top_left": {
+                    "x": 607,
+                    "y": 250
+                },
+                "bottom_right": {
+                    "x": 681,
+                    "y": 307
+                }
             },
-            "bottom_right": {
-                "x": 681,
-                "y": 307
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_9": {
-        "coordinates": {
-            "top_left": {
-                "x": 683,
-                "y": 252
+        {
+            "id": "lot_9",
+            "coordinates": {
+                "top_left": {
+                    "x": 683,
+                    "y": 252
+                },
+                "bottom_right": {
+                    "x": 760,
+                    "y": 308
+                }
             },
-            "bottom_right": {
-                "x": 760,
-                "y": 308
-            }
+            "status": "vacant"
         },
-        "status": "vacant"
-    },
-    "lot_10": {
-        "coordinates": {
-            "top_left": {
-                "x": 760,
-                "y": 255
+        {
+            "id": "lot_10",
+            "coordinates": {
+                "top_left": {
+                    "x": 760,
+                    "y": 255
+                },
+                "bottom_right": {
+                    "x": 830,
+                    "y": 310
+                }
             },
-            "bottom_right": {
-                "x": 830,
-                "y": 310
-            }
+            "status": "vacant"
         },
-        "status": "vacant"
-    },
-    "lot_11": {
-        "coordinates": {
-            "top_left": {
-                "x": 0,
-                "y": 321
+        {
+            "id": "lot_11",
+            "coordinates": {
+                "top_left": {
+                    "x": 0,
+                    "y": 321
+                },
+                "bottom_right": {
+                    "x": 80,
+                    "y": 403
+                }
             },
-            "bottom_right": {
-                "x": 80,
-                "y": 403
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_12": {
-        "coordinates": {
-            "top_left": {
-                "x": 82,
-                "y": 325
+        {
+            "id": "lot_12",
+            "coordinates": {
+                "top_left": {
+                    "x": 82,
+                    "y": 325
+                },
+                "bottom_right": {
+                    "x": 172,
+                    "y": 407
+                }
             },
-            "bottom_right": {
-                "x": 172,
-                "y": 407
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_13": {
-        "coordinates": {
-            "top_left": {
-                "x": 174,
-                "y": 335
+        {
+            "id": "lot_13",
+            "coordinates": {
+                "top_left": {
+                    "x": 174,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 285,
+                    "y": 414
+                }
             },
-            "bottom_right": {
-                "x": 285,
-                "y": 414
-            }
+            "status": "vacant"
         },
-        "status": "vacant"
-    },
-    "lot_14": {
-        "coordinates": {
-            "top_left": {
-                "x": 288,
-                "y": 335
+        {
+            "id": "lot_14",
+            "coordinates": {
+                "top_left": {
+                    "x": 288,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 404,
+                    "y": 422
+                }
             },
-            "bottom_right": {
-                "x": 404,
-                "y": 422
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_15": {
-        "coordinates": {
-            "top_left": {
-                "x": 410,
-                "y": 335
+        {
+            "id": "lot_15",
+            "coordinates": {
+                "top_left": {
+                    "x": 410,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 512,
+                    "y": 422
+                }
             },
-            "bottom_right": {
-                "x": 512,
-                "y": 422
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_16": {
-        "coordinates": {
-            "top_left": {
-                "x": 514,
-                "y": 335
+        {
+            "id": "lot_16",
+            "coordinates": {
+                "top_left": {
+                    "x": 514,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 631,
+                    "y": 424
+                }
             },
-            "bottom_right": {
-                "x": 631,
-                "y": 424
-            }
+            "status": "occupied"
         },
-        "status": "occupied"
-    },
-    "lot_17": {
-        "coordinates": {
-            "top_left": {
-                "x": 637,
-                "y": 335
+        {
+            "id": "lot_17",
+            "coordinates": {
+                "top_left": {
+                    "x": 637,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 759,
+                    "y": 425
+                }
             },
-            "bottom_right": {
-                "x": 759,
-                "y": 425
-            }
+            "status": "vacant"
         },
-        "status": "vacant"
-    },
-    "lot_18": {
-        "coordinates": {
-            "top_left": {
-                "x": 759,
-                "y": 335
+        {
+            "id": "lot_18",
+            "coordinates": {
+                "top_left": {
+                    "x": 759,
+                    "y": 335
+                },
+                "bottom_right": {
+                    "x": 860,
+                    "y": 423
+                }
             },
-            "bottom_right": {
-                "x": 860,
-                "y": 423
-            }
-        },
-        "status": "occupied"
-    }
+            "status": "occupied"
+        }
+    ]
 }
