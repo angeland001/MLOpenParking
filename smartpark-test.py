@@ -30,6 +30,11 @@ loca = [(15, 230), (81, 240), (154, 240), (224, 240), (295, 245), (375, 250), (4
 locb = [(79, 300), (154, 301), (224, 295), (293, 300), (368, 303), (446, 304), (525, 304), (605, 306), (681, 307), (760, 308), (830, 310), (80, 403), (172, 407), (285, 414), (404, 422), (512, 422), (631, 424), (759, 425), (860, 423)]  # Bottom right coordinates
 lot_status = [(0,), (0,), (0,), (0,), (0,), (1,), (0,), (0,), (0,), (1,), (1,), (0,), (0,), (0,), (0,), (0,), (0,), (1,), (0,)]  # Status of each lot (0: occupied, 1: vacant, -1: unchecked)
 
+headers = {
+
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+
+}
 
 def update_json_file():
     # Initialize a list to store car lot data
@@ -86,7 +91,7 @@ def send_json_to_server():
         # Send JSON data to server
         # Replace 'server_url' with the actual URL of your server endpoint
         server_url = 'https://hmj892student.com/parking/init_database.php'
-        response = requests.post(server_url, json=json_data)
+        response = requests.post(server_url, data=json_data,headers=headers)
 
         if response.status_code == 200:
             print("JSON data sent to server successfully")
@@ -344,5 +349,3 @@ while(video_flag): # continue till video runs
     send_json_to_server()
 
 cv2.destroyAllWindows()
-
-
