@@ -24,7 +24,13 @@ import time
 
 import json
 
-# Function to update JSON file with current parking lot statuses
+# Assuming these variables are defined somewhere in your code
+n_lots = 19  # Number of parking lots
+loca = [(15, 230), (81, 240), (154, 240), (224, 240), (295, 245), (375, 250), (453, 246), (525, 248), (607, 250), (683, 252), (760, 255), (0, 321), (82, 325), (174, 335), (288, 335), (410, 335), (514, 335), (637, 335), (759, 335)]  # Top left coordinates
+locb = [(79, 300), (154, 301), (224, 295), (293, 300), (368, 303), (446, 304), (525, 304), (605, 306), (681, 307), (760, 308), (830, 310), (80, 403), (172, 407), (285, 414), (404, 422), (512, 422), (631, 424), (759, 425), (860, 423)]  # Bottom right coordinates
+lot_status = [(0,), (0,), (0,), (0,), (0,), (1,), (0,), (0,), (0,), (1,), (1,), (0,), (0,), (0,), (0,), (0,), (0,), (1,), (0,)]  # Status of each lot (0: occupied, 1: vacant, -1: unchecked)
+
+
 def update_json_file():
     # Initialize a list to store car lot data
     car_lot_data = []
@@ -59,15 +65,11 @@ def update_json_file():
         # Add lot dictionary to list
         car_lot_data.append(lot_dict)
 
-    # Create JSON object
+    # Create JSON object with 'lots' array encapsulation
     json_data = {"lots": car_lot_data}
 
-    # Save JSON data to a file
-    with open("car_lot_data.json", "w") as json_file:
-        json.dump(json_data, json_file, indent=4)
-
-    print("JSON data updated and saved to 'car_lot_data.json'")
-
+    # Print JSON data
+    print(json.dumps(json_data, indent=4))
 
 
 import requests
