@@ -12,11 +12,92 @@ from PIL import Image
 import time
 from timeit import default_timer as timer
 from threading import Thread
-#import pyrebase
-import json
+
 
 
 # ***** Function definitions *****
+
+import json
+import requests
+import time
+
+
+import json
+
+def update_json_file(lot_status, loca, locb):
+    """
+    Function to update the JSON file with the latest parking lot status.
+    Parameters:
+        - lot_status: List of tuples containing the status of each parking lot.
+        - loca: List of tuples containing the top-left coordinates of each parking lot.
+        - locb: List of tuples containing the bottom-right coordinates of each parking lot.
+    """
+    # Initialize a list to store car lot data
+    car_lot_data = []
+
+    # Iterate through each lot
+    for lot_id, lot_status_data in enumerate(lot_status):
+        # Extract lot coordinates
+        top_left_x, top_left_y = int(loca[lot_id][0]), int(loca[lot_id][1])
+        bottom_right_x, bottom_right_y = int(locb[lot_id][0]), int(locb[lot_id][1])
+
+        # Determine lot status
+        status = ""
+        if lot_status_data[0] == -1:
+            status = "unchecked"
+        elif lot_status_data[0] == 0:
+            status = "occupied"
+        elif lot_status_data[0] == 1:
+            status = "vacant"
+
+        # Create lot dictionary
+        lot_dict = {
+            "id": f"lot_{lot_id}",
+            "coordinates": {
+                "top_left": {"x": top_left_x, "y": top_left_y},
+                "bottom_right": {"x": bottom_right_x, "y": bottom_right_y}
+            },
+            "status": status
+        }
+
+        # Add lot dictionary to list
+        car_lot_data.append(lot_dict)
+        print(lot_dict)
+
+    # Encapsulate the array of lots in a dictionary
+    json_data = {"lots": car_lot_data}
+
+    # Save JSON data to a file
+    with open("car_lot_data.json", "w") as json_file:
+        json.dump(json_data, json_file, indent=4)
+
+    print("JSON data saved to 'car_lot_data.json'")
+
+
+
+
+import requests
+
+# Function to send JSON data to the server
+def send_json_to_server():
+    try:
+        # Load JSON data from file
+        with open("car_lot_data.json", "r") as json_file:
+            json_data = json.load(json_file)
+
+        # Send JSON data to server
+        # Replace 'server_url' with the actual URL of your server endpoint
+        server_url = 'https://hmj892student.com/parking/init_database.php'
+        response = requests.post(server_url, json=json_data)
+
+        if response.status_code == 200:
+            print("JSON data sent to server successfully")
+        else:
+            print(f"Failed to send JSON data to server. Error code: {response.status_code}")
+
+    except Exception as e:
+        print(f"Failed to send JSON data to server: {str(e)}")
+
 
 def predict(image, model):
     '''
@@ -254,49 +335,15 @@ while(video_flag): # continue till video runs
                 print('recheck')
                 lot_status = recheck(img, lot_status, new_status)
                 update_output(lot_status) # update to firebase
+                
+    
+    update_json_file(lot_status, loca, locb)
+    
+    # Send JSON data to server every 5 minutes (adjust as needed)
+    send_interval = 5
+    time.sleep(send_interval)
+    send_json_to_server()
 
 cv2.destroyAllWindows()
 
-import json
 
-# Initialize a list to store car lot data
-car_lot_data = []
-
-# Iterate through each lot
-for lot_id in range(n_lots):
-    # Extract lot coordinates
-    top_left_x, top_left_y = int(loca[lot_id][0]), int(loca[lot_id][1])
-    bottom_right_x, bottom_right_y = int(locb[lot_id][0]), int(locb[lot_id][1])
-    
-    lot_coordinates = {
-        "top_left": {"x": top_left_x, "y": top_left_y},
-        "bottom_right": {"x": bottom_right_x, "y": bottom_right_y}
-    }
-    
-    # Determine lot status
-    status = ""
-    if lot_status[lot_id][0] == -1:
-        status = "unchecked"
-    elif lot_status[lot_id][0] == 0:
-        status = "occupied"
-    elif lot_status[lot_id][0] == 1:
-        status = "vacant"
-    
-    # Create lot dictionary
-    lot_dict = {
-        "id": f"lot_{lot_id}",
-        "coordinates": lot_coordinates,
-        "status": status
-    }
-    
-    # Add lot dictionary to list
-    car_lot_data.append(lot_dict)
-
-# Create JSON object
-json_data = {"lots": car_lot_data}
-
-# Save JSON data to a file
-with open("car_lot_data.json", "w") as json_file:
-    json.dump(json_data, json_file, indent=4)
-
-print("JSON data saved to 'car_lot_data.json'")
