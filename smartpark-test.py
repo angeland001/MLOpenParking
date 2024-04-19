@@ -33,7 +33,7 @@ lot_status = [(0,), (0,), (0,), (0,), (0,), (1,), (0,), (0,), (0,), (1,), (1,), 
 headers = {
 
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
-
+    'Content-Type' :  'application/json'
 }
 
 def update_json_file():
@@ -74,7 +74,9 @@ def update_json_file():
     json_data = {"lots": car_lot_data}
 
     # Print JSON data
-    print(json.dumps(json_data, indent=4))
+    results = json.dumps(json_data, indent=4)
+    print(results)
+    return results
 
 
 import requests
@@ -82,16 +84,16 @@ import requests
 
 
 # Function to send JSON data to the server
-def send_json_to_server():
+def send_json_to_server(data):
     try:
         # Load JSON data from file
-        with open("car_lot_data.json", "r") as json_file:
-            json_data = json.load(json_file)
+        #with open("car_lot_data.json", "r") as json_file:
+            #json_data = json.load(json_file)
 
         # Send JSON data to server
-        # Replace 'server_url' with the actual URL of your server endpoint
+        
         server_url = 'https://hmj892student.com/parking/init_database.php'
-        response = requests.post(server_url, data=json_data,headers=headers)
+        response = requests.post(server_url, data=data,headers=headers)
 
         if response.status_code == 200:
             print("JSON data sent to server successfully")
@@ -341,11 +343,11 @@ while(video_flag): # continue till video runs
                 update_output(lot_status) # update to firebase
                 
     
-    update_json_file()
+    data = update_json_file()
     
     # Send JSON data to server every 5 minutes (adjust as needed)
     send_interval = 5
     time.sleep(send_interval)
-    send_json_to_server()
+    send_json_to_server(data)
 
 cv2.destroyAllWindows()
