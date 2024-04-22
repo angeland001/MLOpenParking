@@ -22,12 +22,6 @@ The programs were evaluated on Python 3.8 with the following versions of the dep
 |pandas|1.0.3|
 |Pillow|7.1.2|  
   
-  
-|Optional Package|Version |
-|---|---|
-|torchsummary|1.5.1  |
-|Pyrebase |3.0.27|
-
 <h2>3. Executing the Programs</h2>
 
 <h4>Preparing the programs and the dataset</h4>
@@ -52,10 +46,7 @@ The programs were evaluated on Python 3.8 with the following versions of the dep
 2. To evalute a different parking lot video:
 	2.1 Replace *./test-data/lot.mp4* with the new video
 	2.2 Identify the top-left and bottom-right coordinates of the individual parking lots present in the video and update the *./test-data/lot-coords.csv* file.
-3. (Optional) To upload the evaluated status to Firebase:
-	3.1 Create a Firebase Realtime database
-	3.2 Update the values of `apiKey`, `authDomain`, `databaseURL` and `storageBucket` in the `config` dictionary of the script.
-	3.3 Uncomment relevant lines from the `update_output` function.
+
 
 <h2>4. References and Acknowledgements</h2>
 
